@@ -136,25 +136,10 @@ function formatDay(date: Date) {
 <style>
   /* ── Filter bar ──────────────────────────────── */
 
-  .filter-link::after {
-    content: "";
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: var(--accent);
-    transition: width 0.2s ease;
-  }
-
   .filter-link.is-active {
     color: var(--color-primary);
     font-weight: 500;
     font-style: italic;
-  }
-
-  .filter-link.is-active::after {
-    width: 100%;
   }
 
   .filter-link:hover:not(.is-active) {
