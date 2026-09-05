@@ -1,6 +1,7 @@
 ---
 import siteConfig from "@/site.config";
 import { getAssetPath } from "@/utils/url";
+import SocialIcon from "@/components/SocialIcon.astro";
 
 const pathname = Astro.url.pathname;
 
@@ -52,7 +53,27 @@ function isActive(url: string) {
       <div class="hidden sm:block h-3.5 w-px bg-border shrink-0 mx-1" aria-hidden="true"></div>
 
       <!-- Actions -->
-      <div class="flex items-center gap-4 font-ui">
+      <div class="flex items-center gap-2 font-ui">
+        <!-- Social links -->
+        {
+          siteConfig.social && siteConfig.social.length > 0 && (
+            <div class="hidden sm:flex items-center gap-1">
+              {siteConfig.social.map((item) => (
+                <a
+                  href={item.url}
+                  target={item.url.startsWith("mailto:") ? undefined : "_blank"}
+                  rel={item.url.startsWith("mailto:") ? undefined : "noopener noreferrer"}
+                  class="inline-flex h-8 w-8 items-center justify-center rounded text-muted-foreground hover:text-primary transition-colors duration-150"
+                  aria-label={item.title}
+                  title={item.title}
+                >
+                  <SocialIcon icon={item.icon} size={16} />
+                  {!item.icon && <span class="text-xs">{item.title}</span>}
+                </a>
+              ))}
+            </div>
+          )
+        }
         <!-- <pagefind-modal-trigger compact hide-shortcut></pagefind-modal-trigger> -->
         <!-- <pagefind-searchbox></pagefind-searchbox> -->
         {
@@ -103,6 +124,25 @@ function isActive(url: string) {
             <span>{item.title}</span>
           </a>
         ))
+      }
+      {
+        siteConfig.social && siteConfig.social.length > 0 && (
+          <div class="flex items-center gap-2 px-4 py-3 border-b border-border">
+            {siteConfig.social.map((item) => (
+              <a
+                href={item.url}
+                target={item.url.startsWith("mailto:") ? undefined : "_blank"}
+                rel={item.url.startsWith("mailto:") ? undefined : "noopener noreferrer"}
+                class="inline-flex h-9 w-9 items-center justify-center rounded border border-border text-muted-foreground hover:text-primary transition-colors duration-150"
+                aria-label={item.title}
+                title={item.title}
+              >
+                <SocialIcon icon={item.icon} size={16} />
+                {!item.icon && <span class="text-xs">{item.title}</span>}
+              </a>
+            ))}
+          </div>
+        )
       }
     </div>
   </div>

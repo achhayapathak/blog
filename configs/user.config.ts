@@ -1,15 +1,15 @@
 import type { UserConfig } from "../src/site.config";
 
 const userConfig: UserConfig = {
-  title: "Achhaya",
+  title: "Achhaya Pathak",
   description:
-    "Technical writing on software, distributed systems, and personal learnings.",
+    "Achhaya Pathak",
 
   url: "https://blog.achhaya.com",
   author: "Achhaya Pathak",
 
-  logo: "/logo.svg",
-  avatar: "/images/avatar/avatar.jpeg",
+  logo: "/avatar.png",
+  avatar: "/avatar.png",
 
   navigation: [
     { title: "Writing", url: "/posts" },
@@ -39,6 +39,11 @@ const userConfig: UserConfig = {
       url: "https://x.com/frozen_parantha",
       icon: "x",
     },
+    {
+      title: "Email",
+      url: "mailto:info@achhaya.com",
+      icon: "mail",
+    },
   ],
 
   footerCredits: "Engineered & written by Achhaya Pathak",
@@ -47,7 +52,7 @@ const userConfig: UserConfig = {
   recentPosts: 6,
   relatedPosts: 4,
 
-  showLogo: false,
+  showLogo: true,
   showThemeToggle: true,
   showReadingTime: true,
 
