@@ -1,15 +1,15 @@
 import type { UserConfig } from "../src/site.config";
 
 const userConfig: UserConfig = {
-  title: "Lipi",
+  title: "Achhaya",
   description:
-    "A minimal editorial theme for Astro built for blogs, journals, travel writing, and long-form publishing.",
+    "Technical writing on software, distributed systems, and personal learnings.",
 
-  url: "https://astro-lipi.pages.dev",
-  author: "John Doe",
+  url: "https://blog.achhaya.com",
+  author: "Achhaya Pathak",
 
   logo: "/logo.svg",
-  avatar: "/avatar.png",
+  avatar: "/images/avatar/avatar.jpeg",
 
   navigation: [
     { title: "Writing", url: "/posts" },
@@ -18,37 +18,36 @@ const userConfig: UserConfig = {
   ],
 
   footerLinks: [
+    { title: "Portfolio", url: "https://achhaya.com" },
     { title: "RSS", url: "/rss.xml" },
     { title: "Archive", url: "/archive" },
-    { title: "Source", url: "https://github.com/thelocalhoststudio/lipi" },
-    
   ],
 
   social: [
     {
       title: "GitHub",
-      url: "https://github.com/thelocalhoststudio/lipi",
+      url: "https://github.com/achhayapathak",
       icon: "github",
     },
     {
-      title: "X",
-      url: "https://x.com/",
-      icon: "x",
-    },
-    {
       title: "LinkedIn",
-      url: "https://linkedin.com/",
+      url: "https://linkedin.com/in/achhayapathak",
       icon: "linkedin",
     },
-    
+    {
+      title: "X",
+      url: "https://x.com/frozen_parantha",
+      icon: "x",
+    },
   ],
 
-  footerCredits: "Designed for reading. Built with Astro & Lipi",
+  footerCredits: "Engineered & written by Achhaya Pathak",
 
   postsPerPage: 8,
   recentPosts: 6,
   relatedPosts: 4,
 
+  showLogo: false,
   showThemeToggle: true,
   showReadingTime: true,
 

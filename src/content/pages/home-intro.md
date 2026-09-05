@@ -1,9 +1,9 @@
 ---
 title: Home Intro
-description: A typography-first Astro template for long-form writing.
-updated: 2026-05-26
+description: Technical writing on software, systems, and building things.
+updated: 2026-09-05
 ---
 
-A place for essays, notes, and writing that takes its time.
+A publication for in-depth engineering essays, system breakdowns, and notes on building scalable software.
 
-Lipi is a typography-first publishing template for Astro, built for writers who care about how their words look on the page.
+Written by **Achhaya Pathak** — Software & Backend Engineer specializing in distributed architectures, cloud systems, and high-performance applications.
