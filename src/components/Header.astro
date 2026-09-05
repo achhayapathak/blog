@@ -55,6 +55,93 @@ function isActive(url: string) {
       <div class="flex items-center gap-2 font-ui">
         <!-- <pagefind-modal-trigger compact hide-shortcut></pagefind-modal-trigger> -->
         <!-- <pagefind-searchbox></pagefind-searchbox> -->
+        {/* Palette selector dropdown */}
+        <div class="palette-picker-wrapper relative flex items-center">
+          <button
+            type="button"
+            id="palette-toggle"
+            class="palette-btn"
+            aria-label="Select colour scheme"
+            title="Select colour scheme"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <!-- Palette Icon -->
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle>
+              <circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle>
+              <circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle>
+              <circle cx="6.5" cy="12.5" r=".5" fill="currentColor"></circle>
+              <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"></path>
+            </svg>
+          </button>
+
+          <!-- Dropdown menu -->
+          <div
+            id="palette-dropdown"
+            class="palette-dropdown font-ui"
+            role="menu"
+            aria-label="Colour Schemes"
+          >
+            <div class="px-2.5 py-1.5 text-[10px] font-mono tracking-wider uppercase text-muted-foreground border-b border-border/60">
+              Colour Scheme
+            </div>
+            <div class="p-1 space-y-0.5">
+              <button
+                type="button"
+                data-palette-option="kami"
+                class="palette-option w-full flex items-center justify-between gap-3 px-2 py-1.5 rounded text-xs text-foreground/90 hover:bg-muted hover:text-foreground transition-colors text-left"
+                role="menuitem"
+              >
+                <div class="flex items-center gap-2">
+                  <span class="swatch" style="background: linear-gradient(135deg, #FAF8F5 50%, #D46238 50%); border: 1px solid #D3CDC2;"></span>
+                  <span>Kami</span>
+                </div>
+                <span class="check-icon">✓</span>
+              </button>
+
+              <button
+                type="button"
+                data-palette-option="paper"
+                class="palette-option w-full flex items-center justify-between gap-3 px-2 py-1.5 rounded text-xs text-foreground/90 hover:bg-muted hover:text-foreground transition-colors text-left"
+                role="menuitem"
+              >
+                <div class="flex items-center gap-2">
+                  <span class="swatch" style="background: linear-gradient(135deg, #F8F8F6 50%, #4A6FA5 50%); border: 1px solid #CDD0CC;"></span>
+                  <span>Paper</span>
+                </div>
+                <span class="check-icon">✓</span>
+              </button>
+
+              <button
+                type="button"
+                data-palette-option="forest"
+                class="palette-option w-full flex items-center justify-between gap-3 px-2 py-1.5 rounded text-xs text-foreground/90 hover:bg-muted hover:text-foreground transition-colors text-left"
+                role="menuitem"
+              >
+                <div class="flex items-center gap-2">
+                  <span class="swatch" style="background: linear-gradient(135deg, #F5F6F2 50%, #5A7A57 50%); border: 1px solid #C8CCC1;"></span>
+                  <span>Forest</span>
+                </div>
+                <span class="check-icon">✓</span>
+              </button>
+
+              <button
+                type="button"
+                data-palette-option="amber"
+                class="palette-option w-full flex items-center justify-between gap-3 px-2 py-1.5 rounded text-xs text-foreground/90 hover:bg-muted hover:text-foreground transition-colors text-left"
+                role="menuitem"
+              >
+                <div class="flex items-center gap-2">
+                  <span class="swatch" style="background: linear-gradient(135deg, #F7F4EE 50%, #C88A36 50%); border: 1px solid #CEC5B7;"></span>
+                  <span>Sandstone</span>
+                </div>
+                <span class="check-icon">✓</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
         {
           siteConfig.showThemeToggle && (
             <div class="theme-toggle-wrapper relative flex items-center">
@@ -162,6 +249,86 @@ function isActive(url: string) {
         0 1px 12px 0
         color-mix(in srgb, var(--foreground) 8%, transparent);
     }
+  }
+
+  /* ── Palette Picker ───────────────────────────────── */
+  .palette-picker-wrapper {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .palette-btn {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--muted-foreground);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  }
+
+  .palette-btn:hover {
+    border-color: var(--muted-foreground);
+    color: var(--foreground);
+    background: var(--muted);
+  }
+
+  .palette-btn:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+  }
+
+  .palette-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    min-width: 148px;
+    background: var(--background);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    box-shadow: 0 4px 20px color-mix(in srgb, var(--foreground) 12%, transparent);
+    z-index: 60;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-4px) scale(0.97);
+    transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s ease;
+  }
+
+  .palette-dropdown.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+  }
+
+  .swatch {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .palette-option .check-icon {
+    font-size: 11px;
+    color: var(--primary);
+    opacity: 0;
+    transition: opacity 0.15s ease;
+  }
+
+  .palette-option[aria-selected="true"] {
+    font-weight: 600;
+    color: var(--foreground);
+    background: color-mix(in srgb, var(--muted) 65%, transparent);
+  }
+
+  .palette-option[aria-selected="true"] .check-icon {
+    opacity: 1;
   }
 
   /* ── Theme toggle & Interactive Enhancements ───────── */

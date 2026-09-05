@@ -1,17 +1,76 @@
-/* Base Tokens - only change these */
-:root {
-  --base-50:  #F5F4ED;
-  --base-100: #ECEAE2;
-  --base-200: #DDDAD1;
-  --base-300: #C7C3B9;
-  --base-400: #A9A499;
-  --base-500: #8A867C;
-  --base-600: #6E6A62;
-  --base-700: #56534D;
-  --base-800: #3F3D39;
-  --base-900: #252523;
-  --base-950: #141413;
-  --brand:    #E85D2A;
+/* ==========================================================================
+   Base Tokens & Named Colour Schemes
+   ========================================================================== */
+
+/* ── Default Scheme: Kami Refined ──────────────────────────── */
+:root,
+[data-palette="kami"],
+[data-theme="kami"] {
+  --base-50:  #FAF8F5;
+  --base-100: #F2EFEA;
+  --base-200: #E5E1D8;
+  --base-300: #D3CDC2;
+  --base-400: #B5AFA4;
+  --base-500: #948E83;
+  --base-600: #736D63;
+  --base-700: #554F46;
+  --base-800: #3B3731;
+  --base-900: #2C2925;
+  --base-950: #1F1D1A;
+  --brand:    #D46238;
+}
+
+/* ── Named Scheme: Archival Paper & Slate ──────────────────── */
+[data-palette="paper"],
+[data-theme="paper"] {
+  --base-50:  #F8F8F6;
+  --base-100: #EFF0EE;
+  --base-200: #E0E2DF;
+  --base-300: #CDD0CC;
+  --base-400: #ADB1AC;
+  --base-500: #8C908B;
+  --base-600: #6D716C;
+  --base-700: #505450;
+  --base-800: #363A38;
+  --base-900: #22252A;
+  --base-950: #1C1E22;
+  --brand:    #4A6FA5;
+}
+
+/* ── Named Scheme: Wabi-Sabi Forest & Sage ─────────────────── */
+[data-palette="forest"],
+[data-theme="forest"] {
+  --base-50:  #F5F6F2;
+  --base-100: #EAEDE5;
+  --base-200: #DCE0D6;
+  --base-300: #C8CCC1;
+  --base-400: #A8ADA1;
+  --base-500: #888E81;
+  --base-600: #6A7063;
+  --base-700: #4E5448;
+  --base-800: #363B32;
+  --base-900: #232722;
+  --base-950: #1C1F1B;
+  --brand:    #5A7A57;
+}
+
+/* ── Named Scheme: Sandstone & Amber ───────────────────────── */
+[data-palette="amber"],
+[data-palette="sandstone"],
+[data-theme="amber"],
+[data-theme="sandstone"] {
+  --base-50:  #F7F4EE;
+  --base-100: #EFEAE0;
+  --base-200: #E2DBD0;
+  --base-300: #CEC5B7;
+  --base-400: #AEA494;
+  --base-500: #8D8373;
+  --base-600: #6F6656;
+  --base-700: #524B3D;
+  --base-800: #393328;
+  --base-900: #302A24;
+  --base-950: #231F1B;
+  --brand:    #C88A36;
 }
 
 /* Light theme values */

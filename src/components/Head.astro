@@ -59,7 +59,10 @@ const { lang = "en", schema } = Astro.props;
         document.documentElement.setAttribute('data-pf-theme', theme);
         document.documentElement.style.colorScheme = theme;
 
-        window.__theme = { value: theme, };
+        const storedPalette = localStorage.getItem("palette") || "kami";
+        document.documentElement.setAttribute("data-palette", storedPalette);
+
+        window.__theme = { value: theme, palette: storedPalette };
       } catch (_) {}
     })();
   </script>
