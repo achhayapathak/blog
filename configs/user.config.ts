@@ -3,7 +3,7 @@ import type { UserConfig } from "../src/site.config";
 const userConfig: UserConfig = {
   title: "Achhaya Pathak",
   description:
-    "Achhaya Pathak",
+    "Thoughts on technology, software, and the systems that run the world.",
 
   url: "https://blog.achhaya.com",
   author: "Achhaya Pathak",
@@ -24,6 +24,11 @@ const userConfig: UserConfig = {
   ],
 
   social: [
+    {
+      title: "Portfolio",
+      url: "https://achhaya.com",
+      icon: "globe",
+    },
     {
       title: "GitHub",
       url: "https://github.com/achhayapathak",
@@ -52,11 +57,11 @@ const userConfig: UserConfig = {
   recentPosts: 6,
   relatedPosts: 4,
 
-  showLogo: true,
+  showLogo: false,
   showThemeToggle: true,
   showReadingTime: true,
 
-  heroVariant: "studio",
+  heroVariant: "default",
 
   annotation: "Writing between filter coffees and terminal windows.",
 };

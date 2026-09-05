@@ -35,18 +35,32 @@ function getPreferredTheme(): Theme {
     : LIGHT;
 }
 
-function applyTheme(theme: Theme) {
-  document.documentElement.setAttribute("data-theme",theme);
-  document.documentElement.setAttribute('data-pf-theme', theme);
+function updateThemeToggleUI(theme: Theme) {
+  const button = document.querySelector<HTMLButtonElement>("#theme-toggle");
+  if (!button) return;
 
-  document.documentElement.style.colorScheme =
-    theme;
+  const nextModeText = theme === LIGHT ? "Switch to dark theme" : "Switch to light theme";
+  button.setAttribute("aria-label", nextModeText);
+  button.setAttribute("title", nextModeText);
+
+  const tooltip = document.querySelector<HTMLElement>(".theme-tooltip");
+  if (tooltip) {
+    tooltip.textContent = nextModeText;
+  }
+}
+
+function applyTheme(theme: Theme) {
+  document.documentElement.setAttribute("data-theme", theme);
+  document.documentElement.setAttribute("data-pf-theme", theme);
+
+  document.documentElement.style.colorScheme = theme;
 
   window.__theme = {
     value: theme,
   };
 
   updateThemeColor(theme);
+  updateThemeToggleUI(theme);
 }
 
 function updateThemeColor(
@@ -95,6 +109,7 @@ function setupThemeToggle() {
   if (!button) return;
 
   button.onclick = toggleTheme;
+  updateThemeToggleUI(themeValue);
 }
 
 function initTheme() {

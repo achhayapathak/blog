@@ -21,9 +21,6 @@ const structuredData = generateWebsiteSchema();
 	<FeaturedPost post={allPosts[0]} />
 	<RecentPosts posts={allPosts.slice(1, siteConfig.recentPosts)} sectionTitle="Recent" />
 	<Fragment slot="footer">
-    <Footer
-			meta='Technical essays on distributed systems, backend engineering, and building software.'
-			annotation={siteConfig.annotation}
-		/>
+    <Footer />
   </Fragment>
 </BaseLayout>
