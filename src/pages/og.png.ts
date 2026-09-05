@@ -25,7 +25,7 @@ export const GET: APIRoute =
         }
       );
 
-    return new Response(png, {
+    return new Response(new Uint8Array(png), {
       headers: {
         "Content-Type":
           "image/png",
