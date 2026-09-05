@@ -7,6 +7,7 @@ tags:
   - design
   - customisation
   - colour
+draft: true
 ---
 
 Lipi ships with one colour scheme, drawing on the warmth and restraint of the Kami design language. It comes in two modes, light and dark, and it is designed to serve long reading sessions without tiring the eye. This post describes the character of each mode, and then shows how to build named schemes of your own using the same variable system.

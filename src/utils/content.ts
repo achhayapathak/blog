@@ -17,26 +17,23 @@ let postsCache: Post[] | null = null;
 let pagesCache: Page[] | null = null;
 
 function isVisiblePost(post: Post): boolean {
-  // Show everything in development
+  if (post.data.draft) {
+    return false;
+  }
+
+  // Show future posts in development
   if (import.meta.env.DEV) {
     return true;
   }
-
-  const isDraft = post.data.draft;
 
   const isFuturePost =
     new Date(post.data.published).getTime() >
     Date.now();
 
-  return !isDraft && !isFuturePost;
+  return !isFuturePost;
 }
 
 function isVisiblePage(page: Page): boolean {
-  // Show drafts in development
-  if (import.meta.env.DEV) {
-    return true;
-  }
-
   return !page.data.draft;
 }
 

@@ -7,6 +7,7 @@ tags:
   - markdown
   - typography
   - writing
+draft: true
 ---
 
 Every publishing system makes decisions about prose. The decisions you can see (typeface, measure, spacing) are downstream of decisions you cannot: how blockquotes are weighted, whether footnotes interrupt or defer, how a table earns its place in a text. This page renders each typographic element Lipi supports, using real content so you can judge not just the rendering but whether the element earns its place.

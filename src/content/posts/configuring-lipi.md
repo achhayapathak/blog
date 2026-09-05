@@ -7,6 +7,7 @@ tags:
   - configuration
   - guide
   - setup
+draft: true
 ---
 
 All of Lipi's site-level configuration lives in one file: `configs/lipi.config.ts`. Open it, change a value, and the dev server reflects the change immediately. There is no separate environment file, no admin panel, no database entry to update. The configuration is code, which means it is in version control, diffable, and portable.

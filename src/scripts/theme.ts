@@ -1,3 +1,5 @@
+export {};
+
 const THEME_KEY = "theme";
 
 const LIGHT = "light";

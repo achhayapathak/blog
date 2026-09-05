@@ -7,6 +7,7 @@ tags:
   - customisation
   - design
   - css
+draft: true
 ---
 
 Lipi is designed to be a frame, not a fixed canvas. The visual system is built on CSS custom properties, which means you can change the palette, the typefaces, and the tone of the site by editing a single file and a configuration object. You do not need to touch any Astro or Tailwind component files to make Lipi your own.

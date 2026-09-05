@@ -7,6 +7,7 @@ tags:
   - writing
   - guide
   - content
+draft: true
 ---
 
 Posts in Lipi are markdown files in the filesystem. There is no admin panel, no database, no upload form. You create a file, write in it, and the site builds from what it finds. This guide covers everything you need to go from an empty file to a published post.

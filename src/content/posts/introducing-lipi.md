@@ -7,6 +7,7 @@ tags:
   - astro
   - publishing
   - typography
+draft: true
 ---
 
 There are many ways to publish writing on the internet. Most platforms are optimised for discovery, engagement, and conversion. Lipi is optimised for reading.
