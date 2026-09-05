@@ -1,116 +1,103 @@
-# Lipi
+# Achhaya Pathak's Blog
 
-A typography-first Astro template for long-form writing. Built for essays, travel notes, developer journals, and personal archives — publishing environments where the words come first.
+[![Live Site](https://img.shields.io/badge/Live-blog.achhaya.com-E85D2A?style=flat-square)](https://blog.achhaya.com)
+[![Portfolio](https://img.shields.io/badge/Portfolio-achhaya.com-141413?style=flat-square)](https://achhaya.com)
+[![Built with Astro](https://img.shields.io/badge/Built%20with-Astro%206-BC52EE?style=flat-square&logo=astro&logoColor=white)](https://astro.build)
+[![Tailwind CSS v4](https://img.shields.io/badge/Tailwind%20CSS-v4-38BDF8?style=flat-square&logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](LICENSE)
 
-**[Live Demo](https://astro-lipi.pages.dev)** · **[Source](https://github.com/thelocalhoststudio/lipi)**
+A typography-first publication for long-form engineering essays, distributed system breakdowns, cloud infrastructure retrospectives, and personal technical notes.
 
-> **Lipi** (लिपि) is the Sanskrit word for script, the written form of a language.
-
-![Lipi preview](./public/lipi-preview.png)
+Engineered and written by [Achhaya Pathak](https://achhaya.com).
 
 ---
 
-## What Lipi is for
+## Overview
 
-Lipi is a publishing template, not a general-purpose blog theme. It is designed for writers who publish chronologically and want their site to feel like a considered publication rather than a web application. It is not a good fit for sites that need sidebars, comment sections, newsletter embeds, or dashboards.
+This publication is a focused environment for long-form technical writing. Rather than functioning as a high-friction web application or generic marketing blog, it is designed like a print-conscious editorial journal: warm parchment tones, a measured reading column (68ch), disciplined vertical rhythm, and static HTML output that formats cleanly under Cmd+P.
 
-The visual design takes its cues from the [Kami](https://kami.tw93.fun) design language: warm parchment ground, a constrained reading measure (68 ch), generous line-height, and a single terracotta accent. The output is static HTML. The typography holds under Cmd+P.
+The visual design is inspired by the [Kami](https://kami.tw93.fun) design language, customized with an interactive multi-palette color engine, zero-telemetry client-side search, automated Open Graph generation, and streamlined markdown workflows.
 
 ---
 
 ## Features
 
-- **Literata** body type, **Manrope** UI type, **Fira Code** for code, **Caveat** for annotations
-- Light and dark themes via CSS custom properties, no JavaScript required for switching
-- Warm neutral colour scale with a single brand accent — fully customisable in one file
-- Timeline-based archive grouped by year
-- Tag pages and tag-driven related posts
-- Reading progress indicator via CSS scroll-driven animations
-- Dynamic per-post OG images generated with Satori — no manual image creation
-- Full-text search via Pagefind — static index, no external API, no tracking
-- RSS feed and sitemap included
-- Shiki syntax highlighting with light/dark token mapping
-- GitHub-Flavored Markdown and MDX support
-- Paper texture and print-aware styles (Cmd+P layout preserved)
-- Single configuration file: `configs/lipi.config.ts`
-- Minimal client-side JavaScript
+- **Typography-First Reading Experience**:
+  - **Literata** for long-form body prose
+  - **Manrope** for navigation and UI elements
+  - **Fira Code** for code blocks and terminal snippets
+  - **Caveat** for editorial annotations
+  - Self-hosted via `@fontsource` with zero third-party font trackers
+- **Interactive Multi-Palette Engine**:
+  - Four curated editorial schemes:
+    - **Kami Refined** (Warm Terracotta `#D46238`)
+    - **Archival Paper** (Slate Blue `#4A6FA5`)
+    - **Wabi-Sabi Forest** (Earthy Sage `#5A7A57`)
+    - **Sandstone & Amber** (Sunlit Amber `#C88A36`)
+  - Accessible interactive palette picker in the header with persistent state (`localStorage` + `data-palette`)
+- **Theme Support (Dark & Light)**:
+  - System-aware color scheme detection with manual override toggle
+  - Zero-flash theme initialization script
+  - Dynamic browser `meta[name="theme-color"]` synchronization
+- **Static Full-Text Search**:
+  - Powered by [Pagefind](https://pagefind.app)
+  - Zero external search APIs or tracking
+  - Lightning-fast indexed search across all published writing
+- **Automated Open Graph Images**:
+  - Dynamic social card generation for every post via Satori and `@resvg/resvg-js`
+  - Fallback custom cover support for image-led essays
+- **Markdown & MDX Content Pipeline**:
+  - GitHub-Flavored Markdown (GFM) and MDX component support
+  - Callout blocks, autolinked heading anchors (`↗`), and smart external link decorators
+  - Code syntax highlighting with dual light/dark Shiki themes
+- **SEO & Syndication**:
+  - Auto-generated RSS feed at `/rss.xml`
+  - Canonical URLs, Open Graph / Twitter card meta tags, and structured sitemap
+  - Native reading-time calculation and timeline archive grouped by year
+
+---
+
+## Tech Stack
+
+| Layer | Technology |
+| --- | --- |
+| **Framework** | [Astro 6](https://astro.build) (Static Site Generation & Content Collections) |
+| **Styling** | [Tailwind CSS v4](https://tailwindcss.com) + LightningCSS + CSS Custom Properties |
+| **Search** | [Pagefind](https://pagefind.app) |
+| **OG Images** | [Satori](https://github.com/vercel/satori) + `@resvg/resvg-js` |
+| **Tooling** | [Biome](https://biomejs.dev) + [Prettier](https://prettier.io) |
+| **Deployment** | [Cloudflare Pages](https://pages.cloudflare.com) |
 
 ---
 
 ## Getting Started
 
-### Use this template
+### Prerequisites
+
+- **Node.js**: `>= 22.12.0`
+- **Package Manager**: `npm` or `pnpm`
+
+### Installation
+
+Clone the repository and install dependencies:
 
 ```sh
-npm create astro@latest -- --template thelocalhoststudio/lipi
+git clone https://github.com/achhayapathak/blog.git
+cd blog
+npm install
 ```
 
-### Clone manually
+### Local Development
+
+Start the Astro local development server:
 
 ```sh
-git clone https://github.com/thelocalhoststudio/lipi my-site
-cd my-site
-npm install
 npm run dev
 ```
 
-The dev server starts at `http://localhost:4321`.
+The site will be available at `http://localhost:4321`.
 
----
-
-## Configuration
-
-All site-level settings live in `configs/lipi.config.ts`. Open it, change the values, and the site reflects the changes.
-
-```ts
-// configs/lipi.config.ts
-const userConfig: UserConfig = {
-  title: "Your Publication",
-  description: "What your site is about.",
-  url: "https://yoursite.com",
-  author: "Your Name",
-
-  navigation: [
-    { title: "Writing", url: "/posts" },
-    { title: "Archive", url: "/archive" },
-    { title: "About", url: "/about" },
-  ],
-
-  showThemeToggle: true,
-  showReadingTime: true,
-  heroVariant: "default",   // "default" | "studio"
-};
-```
-
-The full configuration reference is in the [Configuring Lipi](https://astro-lipi.pages.dev/posts/configuring-lipi) post included with the template.
-
----
-
-## Project Structure
-
-```txt
-lipi/
-├── configs/
-│   └── lipi.config.ts        # All site settings live here
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── content/
-│   │   ├── posts/            # Markdown and MDX posts
-│   │   └── pages/            # About, home intro, colophon, etc.
-│   ├── styles/
-│   │   ├── theme.css         # Colour tokens and font variables
-│   │   ├── typography.css    # Prose styles
-│   │   └── global.css        # Base reset and utilities
-│   ├── components/
-│   ├── layouts/
-│   ├── pages/
-│   └── utils/
-├── astro.config.mjs
-└── package.json
-```
-
-Posts go in `src/content/posts/`. Subdirectories are supported. Folders prefixed with `_` are stripped from the URL (useful for year-based organisation without year segments in slugs).
+> **Note**: For background daemon mode, you can run `astro dev --background` and manage it using `astro dev status` or `astro dev stop`.
 
 ---
 
@@ -118,74 +105,138 @@ Posts go in `src/content/posts/`. Subdirectories are supported. Folders prefixed
 
 | Command | Action |
 | --- | --- |
-| `npm install` | Install dependencies |
-| `npm run dev` | Start dev server at `localhost:4321` |
-| `npm run build` | Build to `./dist/`, generate Pagefind index |
-| `npm run preview` | Preview the production build locally |
+| `npm run dev` | Start the local development server at `localhost:4321` |
+| `npm run build` | Build static production assets and index content with Pagefind |
+| `npm run preview` | Preview the production build locally from `./dist` |
+| `npm run lint` | Run Biome linter across the project |
+| `npm run format` | Format codebase using Biome and Prettier |
 
 ---
 
-## Customising
+## Configuration
 
-### Colours
+Site metadata, navigation, social handles, and layout toggles are centralized in [configs/user.config.ts](file:///Users/achhayapathak/Dev/portfolios/blog/configs/user.config.ts):
 
-The colour system is a single warm neutral scale (`--base-50` through `--base-950`) plus one brand colour (`--brand`). Change both in `src/styles/theme.css`:
+```ts
+// configs/user.config.ts
+const userConfig: UserConfig = {
+  title: "Achhaya Pathak",
+  description: "Thoughts on technology, software, and the systems that run the world.",
+  url: "https://blog.achhaya.com",
+  author: "Achhaya Pathak",
 
-```css
-:root {
-  --base-50:  #F5F4ED;   /* ground */
-  --base-950: #141413;   /* near-black */
-  --brand:    #E85D2A;   /* accent */
-}
+  navigation: [
+    { title: "Writing", url: "/posts" },
+    { title: "Archive", url: "/archive" },
+    { title: "About", url: "/about" },
+  ],
+
+  social: [
+    { title: "Portfolio", url: "https://achhaya.com", icon: "globe" },
+    { title: "GitHub", url: "https://github.com/achhayapathak", icon: "github" },
+    { title: "LinkedIn", url: "https://linkedin.com/in/achhayapathak", icon: "linkedin" },
+    { title: "X", url: "https://x.com/frozen_parantha", icon: "x" },
+    { title: "Email", url: "mailto:info@achhaya.com", icon: "mail" },
+  ],
+
+  postsPerPage: 8,
+  recentPosts: 6,
+  relatedPosts: 4,
+
+  showLogo: false,
+  showThemeToggle: true,
+  showReadingTime: true,
+  heroVariant: "default",
+  annotation: "Writing between filter coffees and terminal windows.",
+};
 ```
 
-To create a named colour scheme, add a `[data-theme="name"]` block and set the `data-theme` attribute on `<html>`.
-
-### Typefaces
-
-Fonts are configured in `astro.config.mjs` under the `fonts` array. Swap the `name` field to any typeface available on Fontsource.
-
 ---
 
-## Content Schema
+## Writing & Content Workflow
 
-### Posts (`src/content/posts/`)
+### Creating a New Post
 
-| Field | Type | Required | Notes |
+Posts reside in `src/content/posts/` as Markdown (`.md`) or MDX (`.mdx`) files. A ready-to-use template is available at `src/content/posts/_template.md`.
+
+```markdown
+---
+title: "Building Distributed Document Search Services"
+description: "Architecture review of a multi-node search pipeline handling high query loads."
+published: 2026-09-06
+updated: 2026-09-06
+category: "Engineering"
+tags:
+  - Distributed Systems
+  - Backend
+  - Go
+draft: false
+---
+
+Your post content here...
+```
+
+### Frontmatter Fields
+
+| Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `title` | string | Yes | |
-| `description` | string | Yes | Shown as deck on featured post and in feeds |
-| `published` | date | Yes | `YYYY-MM-DD` |
-| `updated` | date | No | Shows "Updated on" in post metadata |
-| `category` | string | No | Defaults to `Travels` |
-| `tags` | string[] | No | Drives related posts |
-| `cover` | image / string | No | Overrides the auto-generated OG image |
-| `draft` | boolean | No | Excluded from production builds |
-| `lang` | string | No | Per-post language override |
+| `title` | `string` | **Yes** | Post title displayed in headings, cards, and metadata |
+| `description` | `string` | **Yes** | Post summary used for excerpts, RSS feeds, and OG cards |
+| `published` | `date` | **Yes** | Publication date (`YYYY-MM-DD`) |
+| `updated` | `date` | No | Last update date (renders "Updated on ..." if set) |
+| `category` | `string` | No | Category classification (defaults to `Engineering`) |
+| `tags` | `string[]` | No | List of tags used to power related posts and tag filtering |
+| `cover` | `string` / `image` | No | Custom image override for social preview cards |
+| `draft` | `boolean` | No | Set to `true` to exclude the post from production builds |
+| `lang` | `string` | No | Per-post language override |
 
-### Pages (`src/content/pages/`)
+### Static Pages
 
-| Field | Type | Required |
-| --- | --- | --- |
-| `title` | string | Yes |
-| `description` | string | No |
-| `updated` | date | Yes |
-| `draft` | boolean | No |
+Stand-alone pages like the [About](file:///Users/achhayapathak/Dev/portfolios/blog/src/content/pages/about.md) page and home intro are defined in `src/content/pages/`.
 
 ---
 
-## Credits
+## Project Structure
 
-- Typography inspired by the [Kami](https://kami.tw93.fun) design language
-- Body typeface: [Literata](https://fonts.google.com/specimen/Literata) by TypeTogether
-- UI typeface: [Manrope](https://fonts.google.com/specimen/Manrope) by Mikhail Sharanda
-- Monospace: [Fira Code](https://github.com/tonsky/FiraCode) by Nikita Prokopov
-- Annotation: [Caveat](https://fonts.google.com/specimen/Caveat) by Pablo Impallari
-- Built with [Astro](https://astro.build), [Tailwind CSS v4](https://tailwindcss.com)
-- Search powered by [Pagefind](https://pagefind.app)
+```txt
+blog/
+├── configs/
+│   └── user.config.ts        # Central site configuration and social metadata
+├── public/
+│   ├── avatar.png            # Profile avatar asset
+│   ├── favicon.svg           # Scalable site favicon
+│   └── pagefind/             # Generated search indices (post-build)
+├── src/
+│   ├── components/           # UI components (Header, Footer, SocialIcon, etc.)
+│   ├── content/
+│   │   ├── pages/            # Static pages (about.md, home-intro.md)
+│   │   └── posts/            # Markdown & MDX blog posts
+│   ├── layouts/              # Page layouts (Base, Post, Page)
+│   ├── pages/                # File-based routes, RSS, and OG image endpoints
+│   ├── plugins/              # Remark/Rehype custom markdown plugins
+│   ├── scripts/              # Client-side theme and palette controller
+│   ├── styles/               # Global reset, typography, and palette definitions
+│   └── utils/                # Date formatting, content queries, and helpers
+├── astro.config.mjs          # Astro, Tailwind, Vite, and Font configuration
+├── biome.json                # Biome linter and formatter configuration
+├── package.json
+└── tsconfig.json
+```
+
+---
+
+## Credits & Acknowledgments
+
+- Built on top of the open-source **[Lipi](https://github.com/thelocalhoststudio/lipi)** template by [The Localhost Studio](https://github.com/thelocalhoststudio).
+- Aesthetic inspiration drawn from the **[Kami](https://kami.tw93.fun)** design system.
+- Typography:
+  - [Literata](https://fonts.google.com/specimen/Literata) by TypeTogether
+  - [Manrope](https://fonts.google.com/specimen/Manrope) by Mikhail Sharanda
+  - [Fira Code](https://github.com/tonsky/FiraCode) by Nikita Prokopov
+  - [Caveat](https://fonts.google.com/specimen/Caveat) by Pablo Impallari
 
 ---
 
 ## License
 
-MIT — made by [The Localhost Studio](https://github.com/thelocalhoststudio).
+MIT © [Achhaya Pathak](https://achhaya.com)
