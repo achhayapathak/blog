@@ -9,6 +9,7 @@ tags:
   - images
   - gallery
   - writing
+draft: true
 ---
 
 Lipi supports images in two distinct ways. The first is inline: images embedded inside post content using standard markdown syntax, sitting alongside the prose. The second is a dedicated gallery that renders below the article as a separate visual section. The two serve different purposes and are set up differently, but they share the same folder convention.
