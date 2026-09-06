@@ -10,15 +10,6 @@ Over the past several years, I have been architecting distributed systems, cloud
 
 ---
 
-## What I Work On
-
-- **Distributed Systems & Data Pipelines**: Designing fault-tolerant, high-throughput microservices using Apache Kafka, RabbitMQ, Redis, and PostgreSQL. From building distributed document search services processing millions of records with sub-200ms latencies, to automated Snowflake ETL pipelines handling 5+ TB of data monthly.
-- **JoinUp**: Co-founder of JoinUp, a production-grade professional events marketplace. I lead the end-to-end backend, geospatial discovery engine (Google Maps API + PostgreSQL, sub-500ms p99), and cloud architecture.
-- **Autonomous AI & Performance Systems**: Architected LLM-driven trading agents on Hyperliquid with RabbitMQ microservices within Confidential Virtual Machines (CVMs), and built high-performance Rust/WASM ledger applications.
-- **Applied Mathematics & Research**: Authored research on *Optimal Payment Splitting in Bitcoin's Lightning Network*, modeling network liquidity through dynamic programming to resolve blockchain transaction saturation.
-
----
-
 ## About This Publication
 
 This blog is a dedicated space for long-form technical writing. I write about:
@@ -34,7 +25,7 @@ This blog is a dedicated space for long-form technical writing. I write about:
 
 You can find my work and get in touch across these channels:
 
-- **Main Portfolio**: [achhaya.com](https://achhaya.com)
+- **Portfolio**: [achhaya.com](https://achhaya.com)
 - **GitHub**: [github.com/achhayapathak](https://github.com/achhayapathak)
 - **LinkedIn**: [linkedin.com/in/achhayapathak](https://linkedin.com/in/achhayapathak)
 - **X (Twitter)**: [@frozen_parantha](https://x.com/frozen_parantha)

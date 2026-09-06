@@ -40,8 +40,6 @@ Fonts are loaded through **Astro's font API**, which optimises loading, subsets 
 
 **The hairline rules** between sections are generated with a CSS gradient, not a solid border. They fade at both ends. This is a small thing, but it softens what would otherwise be a mechanical cut across the page.
 
-**The drop capital** on the first paragraph of each post is applied with `initial-letter` and scoped to viewports wider than 768px, where the layout has enough room for it to work. On mobile, the first paragraph renders normally. No JavaScript is involved.
-
 **Print continuity** means that Cmd+P produces a result close to the screen layout: the parchment background is preserved, the type scale holds, and the page does not collapse into a plain-text dump. Lipi is one of few web templates where printing is considered rather than ignored.
 
 **The reading progress bar** at the top of each post is powered by CSS scroll-driven animations, with no JavaScript fallback needed for modern browsers.
