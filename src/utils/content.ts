@@ -147,6 +147,19 @@ export async function getAllTagArchives(): Promise<TagArchive[]> {
  * posts/travel/Japan/Tokyo.md
  * -> ["travel", "japan"]
  */
+/**
+ * Remove hidden folders and normalize directory segments.
+ *
+ * Example:
+ * posts/_2026/Japan Beyond Places.md
+ * -> []
+ *
+ * posts/travel/Japan/Tokyo.md
+ * -> ["travel", "japan"]
+ *
+ * posts/system-design/how-i-built-distributed-search/index.md
+ * -> ["system-design"]
+ */
 export function getPostPathSegments(
   filePath?: string
 ): string[] {
@@ -154,12 +167,16 @@ export function getPostPathSegments(
     return [];
   }
 
-  return filePath
-    .replace(POSTS_PATH, "")
-    .split("/")
-    .filter(Boolean)
+  const relative = filePath.replace(POSTS_PATH, "");
+  const parts = relative.split("/").filter(Boolean);
+
+  const filename = parts.at(-1) ?? "";
+  const isIndex = /^index\.(md|mdx)$/i.test(filename);
+
+  const dirParts = isIndex ? parts.slice(0, -2) : parts.slice(0, -1);
+
+  return dirParts
     .filter((segment) => !segment.startsWith("_"))
-    .slice(0, -1)
     .map(slugify);
 }
 
@@ -169,9 +186,11 @@ export function getPostPathSegments(
  * Example:
  * "travel/tokyo-beyond-places"
  * -> "tokyo-beyond-places"
+ * "travel/tokyo-beyond-places/index"
+ * -> "tokyo-beyond-places"
  */
 export function getPostSlugSegment(id: string): string {
-  const segments = id.split("/");
+  const segments = id.split("/").filter((s) => s !== "index");
 
   return segments.at(-1) ?? id;
 }
@@ -181,6 +200,8 @@ export function getPostSlugSegment(id: string): string {
  *
  * Example:
  * travel/japan/tokyo.md
+ * -> "travel/japan/tokyo"
+ * travel/japan/tokyo/index.md
  * -> "travel/japan/tokyo"
  */
 export function getPostSlugPath(
@@ -217,12 +238,16 @@ export function getPagePathSegments(
     return [];
   }
 
-  return filePath
-    .replace(PAGES_PATH, "")
-    .split("/")
-    .filter(Boolean)
+  const relative = filePath.replace(PAGES_PATH, "");
+  const parts = relative.split("/").filter(Boolean);
+
+  const filename = parts.at(-1) ?? "";
+  const isIndex = /^index\.(md|mdx)$/i.test(filename);
+
+  const dirParts = isIndex ? parts.slice(0, -2) : parts.slice(0, -1);
+
+  return dirParts
     .filter((segment) => !segment.startsWith("_"))
-    .slice(0, -1)
     .map(slugify);
 }
 

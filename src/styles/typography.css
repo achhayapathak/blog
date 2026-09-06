@@ -232,4 +232,115 @@
     @apply outline-accent outline-2 outline-dashed outline-offset-4;
   }
 
+  /* =========================================
+     Callouts (Admonitions)
+     ========================================= */
+
+  .app-prose .callout {
+    @apply my-6 rounded-lg border p-4 transition-colors text-foreground;
+    background-color: color-mix(in srgb, var(--card) 60%, var(--background));
+    border-color: var(--border);
+  }
+
+  .app-prose .callout__title {
+    @apply flex items-center gap-2.5 font-medium text-foreground text-sm tracking-tight;
+  }
+
+  .app-prose .callout__icon {
+    @apply h-4 w-4 shrink-0 text-muted-foreground transition-colors;
+  }
+
+  .app-prose .callout__label {
+    @apply font-semibold text-sm text-foreground flex-1;
+  }
+
+  .app-prose .callout__toggle {
+    @apply p-1 text-muted-foreground hover:text-foreground transition-colors rounded;
+  }
+
+  .app-prose .callout__toggle-icon {
+    @apply h-4 w-4 transition-transform duration-200;
+  }
+
+  .app-prose .callout--collapsed .callout__toggle-icon {
+    transform: rotate(-90deg);
+  }
+
+  .app-prose .callout__content {
+    @apply mt-3 text-sm text-foreground/90 leading-relaxed space-y-3;
+  }
+
+  .app-prose .callout__content > p {
+    margin-top: 0.5rem !important;
+  }
+
+  .app-prose .callout__content > :first-child {
+    margin-top: 0 !important;
+  }
+
+  .app-prose .callout__content > :last-child {
+    margin-bottom: 0 !important;
+  }
+
+  /* Callout variants */
+  .app-prose .callout-note,
+  .app-prose .callout-info {
+    border-left-width: 4px;
+    border-left-color: var(--primary, #3b82f6);
+  }
+  .app-prose .callout-note .callout__icon,
+  .app-prose .callout-info .callout__icon {
+    color: var(--primary, #3b82f6);
+  }
+
+  .app-prose .callout-tip,
+  .app-prose .callout-example,
+  .app-prose .callout-success {
+    border-left-width: 4px;
+    border-left-color: #10b981;
+  }
+  .app-prose .callout-tip .callout__icon,
+  .app-prose .callout-example .callout__icon,
+  .app-prose .callout-success .callout__icon {
+    color: #10b981;
+  }
+
+  .app-prose .callout-important,
+  .app-prose .callout-abstract,
+  .app-prose .callout-summary,
+  .app-prose .callout-tldr,
+  .app-prose .callout-question {
+    border-left-width: 4px;
+    border-left-color: #8b5cf6;
+  }
+  .app-prose .callout-important .callout__icon,
+  .app-prose .callout-abstract .callout__icon,
+  .app-prose .callout-summary .callout__icon,
+  .app-prose .callout-tldr .callout__icon,
+  .app-prose .callout-question .callout__icon {
+    color: #8b5cf6;
+  }
+
+  .app-prose .callout-warning,
+  .app-prose .callout-caution {
+    border-left-width: 4px;
+    border-left-color: #f59e0b;
+  }
+  .app-prose .callout-warning .callout__icon,
+  .app-prose .callout-caution .callout__icon {
+    color: #f59e0b;
+  }
+
+  .app-prose .callout-danger,
+  .app-prose .callout-failure,
+  .app-prose .callout-bug {
+    border-left-width: 4px;
+    border-left-color: #ef4444;
+  }
+  .app-prose .callout-danger .callout__icon,
+  .app-prose .callout-failure .callout__icon,
+  .app-prose .callout-bug .callout__icon {
+    color: #ef4444;
+  }
+
 }

@@ -122,33 +122,38 @@ const galleryImages = getGalleryImages(post.filePath ?? '');
       )}
 	  </article>
 
-    {/* Post annotation — document-level context, posts only, no footer fallback */}
-    {post.data.annotation && (
-      <span class="font-annotation block text-primary max-w-70 md:max-w-80 mt-4 text-xl md:text-2xl -rotate-1 leading-snug">
-        {post.data.annotation}
-      </span>
-    )}
+    <!-- Footer Meta / Tags Section -->
+    <div class="space-y-6">
+      {/* Post annotation — document-level context, posts only, no footer fallback */}
+      {post.data.annotation && (
+        <span class="font-annotation block text-primary max-w-70 md:max-w-80 text-xl md:text-2xl -rotate-1 leading-snug">
+          {post.data.annotation}
+        </span>
+      )}
 
-    <!-- Tags -->
-    {
-      post.data.tags &&
-        post.data.tags.length > 0 && (
-          <div class="flex flex-wrap items-baseline gap-3">
-            <SectionHeader title="filed under" />
-            {post.data.tags.map(
-              (tag) => (
-                <a
-                  href={`/tags/${slugify(tag)}`}
-                  class="text-sm underline font-ui text-muted-foreground link-hover"
-                >
-                  {tag}
-                </a>
-              )
-            )}
-          </div>
-        )
-    }
-    <SharePost title={post.data.title} />
+      <!-- Tags -->
+      {
+        post.data.tags &&
+          post.data.tags.length > 0 && (
+            <div class="flex flex-wrap items-baseline gap-3 pt-2">
+              <SectionHeader title="filed under" />
+              {post.data.tags.map(
+                (tag) => (
+                  <a
+                    href={`/tags/${slugify(tag)}`}
+                    class="text-sm underline font-ui text-muted-foreground link-hover"
+                  >
+                    {tag}
+                  </a>
+                )
+              )}
+            </div>
+          )
+      }
+      <div class="pt-2">
+        <SharePost title={post.data.title} />
+      </div>
+    </div>
     <div class="divider" />
   </section>
   
