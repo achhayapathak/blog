@@ -25,6 +25,7 @@ const postsCollection = defineCollection({
     draft: z.boolean().default(false),
     lang: z.string().optional(),
     annotation: z.string().optional(),
+    canonicalUrl: z.string().url().optional(),
   })
 });
 

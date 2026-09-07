@@ -14,12 +14,13 @@ export async function GET(context: APIContext) {
     title: siteConfig.title,
     description: siteConfig.description,
     site,
+    customData: `<language>en-us</language><atom:link href="${new URL('/rss.xml', site).href}" rel="self" type="application/rss+xml" />`,
     items: posts.map((post) => ({
       title: post.data.title,
       description: post.data.description,
-      pubDate:
-        post.data.updated ??
-        post.data.published,
+      categories: post.data.tags ?? [],
+      author: siteConfig.author,
+      pubDate: post.data.published,
       link: getPostUrl(
         post.id,
         post.filePath

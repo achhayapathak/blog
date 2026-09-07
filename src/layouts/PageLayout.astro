@@ -6,6 +6,7 @@ import Breadcrumb from "@/components/Breadcrumb.astro";
 import Footer from "@/components/Footer.astro";
 import siteConfig from "@/site.config";
 import { type Page, type Post } from "@/utils/content";
+import { generateBreadcrumbSchema } from "@/utils/schema";
 
 interface Props {
   entry?: Page | Post;
@@ -14,7 +15,7 @@ interface Props {
   showBreadcrumb?: boolean;
   transitionName?: string;
   noindex?: boolean;
-  schema?: Record<string, unknown>;
+  schema?: Record<string, unknown> | Record<string, unknown>[];
   showHeader?: boolean;
 }
 
@@ -58,8 +59,16 @@ const ogImage = entry
   ? `/og/${entry.id}.png`
   : undefined;
 
+const breadcrumbItems = [
+  { name: "Home", url: "/" },
+  ...(title ? [{ name: title, url: Astro.url.pathname }] : []),
+];
+const breadcrumbSchema = showBreadcrumb && title ? generateBreadcrumbSchema(breadcrumbItems) : undefined;
+const initialSchemas = Array.isArray(schema) ? schema : schema ? [schema] : [];
+const combinedSchemas = [...initialSchemas, breadcrumbSchema].filter(Boolean) as Record<string, unknown>[];
+
 ---
-<BaseLayout schema={schema}>
+<BaseLayout schema={combinedSchemas}>
   <SEO
     slot="seo"
     title={title}

@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /pagefind/
+Disallow: /_astro/
+
+# Sitemaps
+Sitemap: https://blog.achhaya.com/sitemap-index.xml

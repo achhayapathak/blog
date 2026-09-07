@@ -1,7 +1,7 @@
 ---
 import siteConfig from "@/site.config";
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import { type Post, getPostSlug, getAllPosts, getRelatedPosts } from "@/utils/content";
+import { type Post, getPostSlug, getPostSlugPath, getPostUrl, getAllPosts, getRelatedPosts } from "@/utils/content";
 import { slugify } from "@/utils/text";
 import { getCoverImage, getGalleryImages } from "@/utils/image";
 import Breadcrumb from "@/components/Breadcrumb.astro";
@@ -9,7 +9,7 @@ import ReadingProgress from "@/components/ReadingProgress.astro";
 import SharePost from "@/components/content/SharePost.astro";
 import SEO from "@/components/SEO.astro";
 import PostNavigation from "@/components/content/PostNavigation.astro";
-import { generatePostSchema } from "@/utils/schema";
+import { generatePostSchema, generateBreadcrumbSchema } from "@/utils/schema";
 import PostMeta from "@/components/content/PostMeta.astro";
 import RelatedPosts from "@/components/content/RelatedPosts.astro";
 import Footer from "@/components/Footer.astro";
@@ -46,25 +46,33 @@ function formatMonthYear(date: Date) {
     .format(date)
     .toUpperCase();
 }
-const { title, description, cover, published, tags } = post.data;
+const { title, description, cover, published, updated, tags, category, canonicalUrl } = post.data;
 
 const allPosts    = await getAllPosts();
 const relatedPosts = getRelatedPosts(post, allPosts, siteConfig.relatedPosts);
-const ogImage = `/og/posts/${getPostSlug(post.id, post.filePath)}.png`;
-const structuredData = generatePostSchema(post);
+const ogImage = `/og/posts/${getPostSlugPath(post.id, post.filePath)}.png`;
+const structuredData = generatePostSchema(post, ogImage, canonicalUrl);
+const breadcrumbData = generateBreadcrumbSchema([
+  { name: "Home", url: "/" },
+  { name: "Writing", url: "/posts" },
+  { name: title, url: getPostUrl(post.id, post.filePath) },
+]);
 const coverImage = getCoverImage(cover);
 const galleryImages = getGalleryImages(post.filePath ?? '');
 ---
 
-<BaseLayout schema={structuredData}>
+<BaseLayout schema={[structuredData, breadcrumbData]}>
   <SEO
     slot="seo"
     {title}
     description={description ?? ""}
     type="article"
     publishedTime={published}
+    modifiedTime={updated}
+    {category}
     {tags}
     {ogImage}
+    {canonicalUrl}
   />
   <Fragment slot="header">
     <Breadcrumb />

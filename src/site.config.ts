@@ -49,7 +49,7 @@ const siteConfig = {
 
   avatar: userConfig.avatar,
   logo: userConfig.logo,
-  ogImage: userConfig.defaultOGImage ?? "/og.jpg",
+  ogImage: userConfig.defaultOGImage ?? "/og.png",
 
   navigation: userConfig.navigation ?? [],
   footerLinks: userConfig.footerLinks ?? [],

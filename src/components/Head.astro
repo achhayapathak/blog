@@ -3,37 +3,57 @@ import { Font } from 'astro:assets';
 import { ClientRouter } from "astro:transitions";
 import "@/styles/global.css";
 
+import siteConfig from "@/site.config";
+
 interface Props {
-  lang?: string;
-  schema?: Record<string, unknown>;
+  schema?:
+    | Record<string, unknown>
+    | (Record<string, unknown> | undefined)[];
 }
 
-const { lang = "en", schema } = Astro.props;
+const { schema } = Astro.props;
+
+const cleanSchemas = Array.isArray(schema)
+  ? schema.filter(Boolean) as Record<string, unknown>[]
+  : schema ? [schema] : [];
+
+const schemaOutput =
+  cleanSchemas.length > 1
+    ? {
+        "@context": "https://schema.org",
+        "@graph": cleanSchemas.map((s) => {
+          const { ["@context"]: _, ...rest } = s;
+          return rest;
+        }),
+      }
+    : cleanSchemas[0];
 ---
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="generator" content={Astro.generator} />
+  <meta name="author" content={siteConfig.author} />
   
-  <!-- Filled at runtime by theme.ts to match the current background colour -->
-  <meta name="theme-color" content="" />
+  <!-- Default theme colour; updated at runtime by theme.ts to match active palette -->
+  <meta name="theme-color" content="#f5f4ed" />
 
   <link rel="icon" href="/favicon.ico" sizes="48x48" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
   <link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+  <link rel="manifest" href="/site.webmanifest" />
   <link rel="sitemap" href="/sitemap-index.xml" />
   <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="/rss.xml" />
 
 	  <!-- SEO injected per layout -->
   <slot name="seo" />
   {
-    schema && (
+    schemaOutput && (
       <script 
         is:inline
         type="application/ld+json"
-        set:html={JSON.stringify(schema)}
+        set:html={JSON.stringify(schemaOutput)}
       />
     )
   }

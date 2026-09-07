@@ -28,6 +28,9 @@ const {
   fetchPriority = "auto",
 } = Astro.props;
 
+// LCP Optimization: High-priority hero/cover images must not be lazy-loaded
+const effectiveLoading = fetchPriority === 'high' ? 'eager' : loading;
+
 const imageClass = [
   "block w-full h-auto",
   className,
@@ -46,7 +49,7 @@ const isAstroImage = (src: unknown): src is ImageMetadata =>
       alt={alt}
       width={width}
       height={height}
-      loading={loading}
+      loading={effectiveLoading}
       decoding="async"
       formats={['avif', 'webp']}
       quality={quality}
@@ -54,7 +57,7 @@ const isAstroImage = (src: unknown): src is ImageMetadata =>
       fetchpriority={fetchPriority}
     />
   ) : (
-    <img src={src} alt={alt} loading={loading} class={imageClass} />
+    <img src={src} alt={alt} loading={effectiveLoading} fetchpriority={fetchPriority} class={imageClass} />
   )
 )}
 
@@ -66,14 +69,15 @@ const isAstroImage = (src: unknown): src is ImageMetadata =>
         alt={alt}
         width={width}
         height={height}
-        loading={loading}
+        loading={effectiveLoading}
         decoding="async"
         formats={['avif', 'webp']}
         quality={quality}
         class={className}
+        fetchpriority={fetchPriority}
       />
     ) : (
-      <img src={src} alt={alt} loading={loading} class={imageClass} />
+      <img src={src} alt={alt} loading={effectiveLoading} fetchpriority={fetchPriority} class={imageClass} />
     )}
     {caption && (
       <figcaption class="mt-2 text-sm text-center text-muted-foreground leading-snug">{caption}</figcaption>

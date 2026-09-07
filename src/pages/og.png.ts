@@ -1,34 +1,21 @@
 // src/pages/og.png.ts
 
-import type {
-  APIRoute,
-} from "astro";
+import type { APIRoute } from "astro";
+import siteConfig from "@/site.config";
+import { generateOgImage } from "@/utils/og";
 
-import {
-  generateOgImage,
-} from "@/utils/og";
+export const GET: APIRoute = async () => {
+  const png = await generateOgImage({
+    title: siteConfig.title,
+    description: siteConfig.description,
+    category: "Engineering & Systems",
+    site: siteConfig.url,
+  });
 
-export const GET: APIRoute =
-  async (context) => {
-    const png =
-      await generateOgImage(
-        {
-          title: "Lipi",
-
-          description:
-            "A minimal editorial theme for Astro focused on typography, chronology, and longform publishing.",
-
-          category:
-            "Astro Theme",
-
-          site: "https://astro-lipi.pages.dev",
-        }
-      );
-
-    return new Response(new Uint8Array(png), {
-      headers: {
-        "Content-Type":
-          "image/png",
-      },
-    });
-  };
+  return new Response(new Uint8Array(png), {
+    headers: {
+      "Content-Type": "image/png",
+      "Cache-Control": "public, max-age=31536000, immutable",
+    },
+  });
+};
